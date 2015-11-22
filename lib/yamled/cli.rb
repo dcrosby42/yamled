@@ -64,10 +64,6 @@ module Yamled
 
       class << self
         def load(argv)
-          massage(parse_argv(argv))
-        end
-
-        def parse_argv(argv)
           argv_dup = argv.dup
 
           options = Defaults
@@ -80,26 +76,31 @@ module Yamled
               options[:action] = :get
               options[:path] = path
             end
+            opts.on("-s", "--set [PATH]", String, "Write a value at a path. Requires --value option.") do |path|
+              options[:action] = :set
+              options[:path] = path
+            end
+            opts.on("-r", "--set-root", String, "Write a value at the root. Requires --value option.") do |path|
+              options[:action] = :set
+              options[:path] = ""
+            end
+            opts.on("-v", "--value [VALUE]", String, "Value to set at the location of --path.") do |strval|
+              options[:value] = YAML.load(strval)
+            end
           end
+
           begin
             parser.parse!(argv_dup)
+            return validate(options)
           rescue => e
             puts e.message
             puts parser.help
-            exit 2
+            exit Yamled::Errors::BadOptions
           end
-
-
-          return options
         end
 
-        def massage(options)
+        def validate(options)
           options
-          # options = options.dup
-          # if options[:action] == :get and !options[:path]
-          #   options[:action] = :reprint
-          # end
-          # return options
         end
       end
     end

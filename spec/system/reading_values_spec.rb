@@ -35,7 +35,12 @@ context "reading values" do
       simple_value_cases.each do |data|
         it "print simply as #{data.inspect}" do
           run_yamled_successfully to_yaml(data), '--get'
-          expect(@stdout).to eq(data.to_s)
+          expected = if data.nil?
+                       ''
+                     else
+                       data.inspect
+                     end
+          expect(@stdout).to eq(expected)
         end
       end
     end
@@ -66,7 +71,12 @@ context "reading values" do
           data["britain"]["scotland"]["item"] = c
           input = to_yaml(data)
           run_yamled_successfully input, "--get #{path}"
-          expect(@stdout).to eq(c.to_s)
+          expected = if c.nil?
+                       ''
+                     else
+                       c.inspect
+                     end
+          expect(@stdout).to eq(expected)
         end
       end
     end

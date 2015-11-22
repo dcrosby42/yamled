@@ -39,14 +39,16 @@ module Yamled
         str = case v
               when Hash, Array
                 YAML.dump(v)
+              when nil
+                ''
               else
-                v.to_s
+                v.inspect
               end
         io.print str
       end
 
       def print_empty
-        print_value ''
+        io.print ''
       end
     end
 

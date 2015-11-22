@@ -9,7 +9,7 @@ context "running the yamled command" do
     @exit_status = r.exit_status
   end
   
-  it "runs with blank input" do
+  it "runs with blank input", :wip do
     run_yamled
     expect(@stderr).to eq("")
     expect(@stdout).to eq("")

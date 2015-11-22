@@ -25,7 +25,7 @@ context "proper cli usage" do
   end
 
   context "bad options" do
-    it "exits and shows usage", :wip do
+    it "exits and shows usage" do
       run_yamled nil, "--badness"
       expect(@stdout).to match(/invalid option.*--badness.*Usage: yamled.*--get/m)
       expect(@stderr).to eq('')
