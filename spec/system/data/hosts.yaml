@@ -1,0 +1,135 @@
+boxes:
+  master:
+    box: salt-master-precise64-v2
+    box_url: http://global.mt.lldns.net/llnw/staff/dcrosby/salt-master-precise64-v2.box
+  minion:
+    box: salt-minion-precise64-v5
+    box_url: http://global.mt.lldns.net/llnw/staff/dcrosby/salt-minion-precise64-v5.box
+
+master:
+  box: master
+  host_name: saltmaster.local
+  private_network_ip: "192.168.43.100"
+  ssh_port: 4200
+  synced_folders:
+    - host: "../../saltstack/salt"
+      guest: "/srv/salt"
+    - host: "../../saltstack/pillar"
+      guest: "/srv/pillar"
+  
+minions: 
+  brick1:
+    role: lama-test-brick
+    host_name: brick1.local
+    private_network_ip: "192.168.43.101"
+    ssh_port: 4201
+  brick2:
+    role: lama-test-brick
+    host_name: brick2.local
+    private_network_ip: "192.168.43.102"
+    ssh_port: 4202
+  brick3:
+    role: lama-test-brick
+    host_name: brick3.local
+    private_network_ip: "192.168.43.103"
+    ssh_port: 4203
+
+  llp:
+    role: lama-test-llp
+    host_name: llp.local
+    private_network_ip: "192.168.43.110"
+    ssh_port: 4210
+
+  mapper:
+    role: lama-test-mapper
+    host_name: mapper.local
+    private_network_ip: "192.168.43.111"
+    ssh_port: 4211
+
+  lmd:
+    role: lama-lmd-app-server
+    host_name: lmd.local
+    private_network_ip: "192.168.43.112"
+    ssh_port: 4212
+
+  inst1:
+    role: lama-test-inst-db
+    host_name: inst1.local
+    private_network_ip: "192.168.43.121"
+    ssh_port: 4221
+  inst2:
+    role: lama-test-inst-db
+    host_name: inst2.local
+    private_network_ip: "192.168.43.122"
+    ssh_port: 4222
+  inst3:
+    role: lama-test-inst-db
+    host_name: inst3.local
+    private_network_ip: "192.168.43.123"
+    ssh_port: 4223
+
+  cass1:
+    role: lama-test-cassandra
+    host_name: cass1.local
+    private_network_ip: "192.168.43.125"
+    ssh_port: 4225
+  cass2:
+    role: lama-test-cassandra
+    host_name: cass2.local
+    private_network_ip: "192.168.43.126"
+    ssh_port: 4226
+  cass3:
+    role: lama-test-cassandra
+    host_name: cass3.local
+    private_network_ip: "192.168.43.127"
+    ssh_port: 4227
+
+    
+  redis:
+    role: lama-test-instance-redis
+    host_name: redis.local
+    private_network_ip: "192.168.43.130"
+    ssh_port: 4230
+
+  shared:
+    role: lama-test-shared
+    host_name: shared.local
+    private_network_ip: "192.168.43.131"
+    ssh_port: 4231
+
+  amqp:
+    role: lama-test-amqp
+    host_name: amqp.local
+    private_network_ip: "192.168.43.132"
+    ssh_port: 4232
+
+  mongo:
+    role: lama-test-mongo
+    host_name: mongo.local
+    private_network_ip: "192.168.43.133"
+    ssh_port: 4233
+
+  command:
+    role: lama-test-command-ui
+    host_name: command.local
+    private_network_ip: "192.168.43.134"
+    ssh_port: 4234
+
+  portal:
+    role: lama-test-portal
+    host_name: portal.local
+    private_network_ip: "192.168.43.135"
+    ssh_port: 4235
+
+  lmt:
+    role: lama-test-lmt
+    host_name: lmt.local
+    private_network_ip: "192.168.43.136"
+    ssh_port: 4236
+
+  dlpd:
+    role: lama-test-dlpd
+    host_name: dlpd.local
+    private_network_ip: "192.168.43.137"
+    ssh_port: 4237
+
